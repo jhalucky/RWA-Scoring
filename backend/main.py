@@ -1,18 +1,28 @@
-# main.py
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import uuid
-import os
 from pathlib import Path
+import uuid
 from typing import Optional, Dict, Any
-from scorer import score_asset, extract_text_from_file, pretty_breakdown
-from ml_scrorer import score_asset_ml
+
+from scorer import extract_text_from_file, pretty_breakdown
+from ml_scrorer import score_asset_ml  # adjust if your file is scorer_ml.py instead
 
 STORAGE_DIR = Path("uploads")
 STORAGE_DIR.mkdir(exist_ok=True)
 
 app = FastAPI(title="RWA Scoring Engine (MVP)")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # for dev; you can lock it later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 class ScoreRequest(BaseModel):
     asset_id: Optional[str] = None

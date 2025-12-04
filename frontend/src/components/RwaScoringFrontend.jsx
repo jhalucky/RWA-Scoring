@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import { Upload as UploadIcon, Cpu, ArrowLeft } from "lucide-react";
 
-/* Minimal shadcn-like helper components (drop-in).
-   Replace with your real shadcn components if available. */
+
 const Button = ({ children, className = "", ...props }) => (
   <button
     {...props}
@@ -42,28 +41,40 @@ export default function RwaScoringFrontend({ onBackToHome }) {
   const handleFileChange = (e) => setFile(e.target.files?.[0] || null);
 
   const uploadFile = async () => {
-    if (!file) return alert("Choose a file first");
+    if (!file) {
+      setMessage("⚠️ Please choose a file first");
+      return;
+    }
     setLoading(true);
-    setMessage("Uploading...");
+    setMessage("📤 Uploading file...");
     try {
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch(`${backendBase}/upload`, { method: "POST", body: fd });
+      
+      if (!res.ok) {
+        throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+      }
+      
       const data = await res.json();
       setAssetId(data.asset_id);
       setExtractedText(data.extracted_text || "");
-      setMessage(`Uploaded — id: ${data.asset_id}`);
+      setMessage(`✅ Uploaded successfully — ID: ${data.asset_id}`);
     } catch (err) {
-      console.error(err);
-      alert("Upload failed");
+      console.error("Upload error:", err);
+      setMessage(`❌ Upload failed: ${err.message}. Is the backend server running at ${backendBase}?`);
     } finally {
       setLoading(false);
     }
   };
 
   const requestScore = async () => {
+    if (!assetId && !extractedText) {
+      setMessage("⚠️ Please upload a file or enter text first");
+      return;
+    }
     setLoading(true);
-    setMessage("Scoring...");
+    setMessage("🤖 Analyzing and scoring asset...");
     try {
       const body = assetId ? { asset_id: assetId } : { raw_text: extractedText };
       const res = await fetch(`${backendBase}/score`, {
@@ -71,21 +82,29 @@ export default function RwaScoringFrontend({ onBackToHome }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      
+      if (!res.ok) {
+        throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+      }
+      
       const data = await res.json();
       setScoreResp(data);
-      setMessage(`Score: ${data.score}`);
+      setMessage(`✅ Score calculated: ${data.score}/100`);
     } catch (err) {
-      console.error(err);
-      alert("Scoring failed");
+      console.error("Scoring error:", err);
+      setMessage(`❌ Scoring failed: ${err.message}. Is the backend server running?`);
     } finally {
       setLoading(false);
     }
   };
 
   const requestTokenizePayload = async () => {
-    if (!assetId) return alert("Upload first");
+    if (!assetId) {
+      setMessage("⚠️ Please upload a file first");
+      return;
+    }
     setLoading(true);
-    setMessage("Preparing payload...");
+    setMessage("🔧 Preparing tokenization payload...");
     try {
       const body = {
         asset_id: assetId,
@@ -99,26 +118,35 @@ export default function RwaScoringFrontend({ onBackToHome }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      
+      if (!res.ok) {
+        throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+      }
+      
       const data = await res.json();
       setTokenPayload(data);
-      setMessage("Payload ready");
+      setMessage("✅ Tokenization payload ready for deployment");
     } catch (err) {
-      console.error(err);
-      alert("Tokenize failed");
+      console.error("Tokenize error:", err);
+      setMessage(`❌ Tokenization failed: ${err.message}. Is the backend server running?`);
     } finally {
       setLoading(false);
     }
   };
 
   const connectWallet = async () => {
-    if (!window.ethereum) return alert("MetaMask not found");
+    if (!window.ethereum) {
+      setMessage("❌ MetaMask not found. Please install MetaMask extension.");
+      return;
+    }
     try {
+      setMessage("🔗 Connecting to MetaMask...");
       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
       setWalletAddr(accounts[0]);
-      setMessage("Wallet connected");
+      setMessage("✅ Wallet connected successfully");
     } catch (err) {
-      console.error(err);
-      alert("Wallet connect failed");
+      console.error("Wallet connection error:", err);
+      setMessage(`❌ Wallet connection failed: ${err.message}`);
     }
   };
 
@@ -186,28 +214,47 @@ export default function RwaScoringFrontend({ onBackToHome }) {
         </div>
       </div>
 
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-3 items-center flex-wrap">
         <input id="fileinput" type="file" accept="image/*,.pdf" onChange={handleFileChange} className="hidden" />
         <label htmlFor="fileinput" className="cursor-pointer">
           <div
-            className="px-4 py-2 rounded-md border border-white/5 hover:border-yellow-400/40"
+            className="px-4 py-2 rounded-md border border-white/5 hover:border-yellow-400/40 transition-colors"
             style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)" }}
           >
             <div className="flex items-center gap-2">
               <UploadIcon size={18} className="text-white/80" />
-              <div className="text-sm text-white/80">Choose file</div>
+              <div className="text-sm text-white/80">{file ? file.name : "Choose file"}</div>
             </div>
           </div>
         </label>
 
-        <Button onClick={uploadFile} className="ml-auto">
-          Upload
+        <Button onClick={uploadFile} disabled={loading || !file} className="ml-auto disabled:opacity-50 disabled:cursor-not-allowed">
+          {loading ? "Uploading..." : "Upload"}
         </Button>
-        <Button onClick={requestScore}>Score</Button>
-        <Button onClick={requestTokenizePayload}>Prepare Tokenize</Button>
+        <Button onClick={requestScore} disabled={loading}>
+          {loading ? "Scoring..." : "Score"}
+        </Button>
+        <Button onClick={requestTokenizePayload} disabled={loading || !assetId}>
+          Prepare Tokenize
+        </Button>
       </div>
 
-      <div className="text-sm text-white/60">{message}</div>
+      {message && (
+        <div className={`text-sm p-3 rounded-lg ${
+          message.includes('❌') ? 'bg-red-500/10 text-red-400 border border-red-500/20' :
+          message.includes('⚠️') ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' :
+          message.includes('✅') ? 'bg-green-500/10 text-green-400 border border-green-500/20' :
+          'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+        }`}>
+          {message}
+        </div>
+      )}
+      {loading && (
+        <div className="flex items-center gap-2 text-sm text-white/60">
+          <div className="w-4 h-4 border-2 border-white/20 border-t-white/60 rounded-full animate-spin"></div>
+          Processing...
+        </div>
+      )}
     </Card>
   );
 
