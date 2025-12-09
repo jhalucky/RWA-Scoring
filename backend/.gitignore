@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+
+# Uploads (keep directory but ignore files)
+uploads/*
+!uploads/.gitkeep
+
+# Models (if large, consider git-lfs)
+# models/*.pkl
+# models/*.h5
+
