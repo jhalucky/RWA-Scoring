@@ -37,7 +37,7 @@ export default function RwaScoringFrontend({ onBackToHome }) {
   const [walletAddr, setWalletAddr] = useState(null);
 
   // Use environment variable or fallback to localhost
-  const backendBase = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+  const backendBase = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000" || "https://malonyl-judgeable-jayda.ngrok-free.dev";
 
   const handleFileChange = (e) => setFile(e.target.files?.[0] || null);
 
