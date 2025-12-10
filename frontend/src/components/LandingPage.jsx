@@ -89,7 +89,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
                 src="https://pixabay.com/get/g83bf8d58a6453b04ff15ed5d02d1d4e623363eb644736cb0f50fcb84e81d798e8356b6f767f1d699dcf75bf1f4e012b6.svg"
                 alt="RWA Platform Logo - OpenClipart-Vectors on Pixabay"
                 className="w-7 h-7 sm:w-8 sm:h-8"
-                style={{ filter: 'drop-shadow(0 0 8px rgba(0, 89, 207, 0.4))' }}
+                style={{ filter: 'drop-shadow(0 0 8px rgba(209, 188, 0, 0.6))' }}
               />
               <span className="text-base sm:text-lg font-semibold text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>RWA Platform</span>
             </div>
@@ -118,7 +118,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               )}
               <button 
                 onClick={onLaunchApp}
-                className="px-4 py-1.5 bg-gradient-to-r from-laser-blue to-electric-cyan rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
+                className="px-4 py-1.5 bg-gradient-to-r from-neon-yellow/90 to-neon-yellow rounded-lg text-sm font-semibold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-neon-yellow/50 text-deep-space font-bold"
               >
                 Launch App
               </button>
@@ -160,7 +160,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               )}
               <button 
                 onClick={onLaunchApp}
-                className="w-full px-6 py-2 bg-gradient-to-r from-laser-blue to-electric-cyan rounded-lg body-base font-semibold"
+                className="w-full px-6 py-2 bg-gradient-to-r from-neon-yellow/90 to-neon-yellow rounded-lg body-base font-semibold text-deep-space font-bold"
               >
                 Launch App
               </button>
@@ -174,8 +174,8 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-deep-space via-dark-surface to-deep-space">
           <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-laser-blue rounded-full blur-[140px] animate-float"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-electric-cyan rounded-full blur-[140px] animate-float" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-neon-yellow rounded-full blur-[140px] animate-float"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-neon-yellow/60 rounded-full blur-[140px] animate-float" style={{ animationDelay: '2s' }}></div>
           </div>
           
           {/* Grid Pattern */}
@@ -204,7 +204,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
               <button 
                 onClick={onLaunchApp}
-                className="px-8 py-4 bg-gradient-to-r from-laser-blue to-electric-cyan rounded-xl text-base font-semibold hover:shadow-lg hover:shadow-laser-blue/25 transition-all duration-300 flex items-center gap-2 group transform hover:scale-105"
+                className="px-8 py-4 bg-gradient-to-r from-neon-yellow/90 to-neon-yellow rounded-xl text-base font-bold hover:shadow-lg hover:shadow-neon-yellow/50 transition-all duration-300 flex items-center gap-2 group transform hover:scale-105 text-deep-space border-2 border-neon-yellow/30"
               >
                 Launch App
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -219,7 +219,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
                 src="/hero-network.svg" 
                 alt="Blockchain Network" 
                 className="w-full h-auto opacity-80"
-                style={{ filter: 'drop-shadow(0 0 40px rgba(0, 89, 207, 0.3))' }}
+                style={{ filter: 'drop-shadow(0 0 40px rgba(209, 188, 0, 0.4))' }}
               />
             </div>
           </div>
@@ -237,7 +237,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
                 alt="RWA Platform 3D Logo - OpenClipart-Vectors on Pixabay"
                 className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 animate-3d-rotate"
                 style={{ 
-                  filter: 'drop-shadow(0 0 30px rgba(0, 209, 188, 0.5)) drop-shadow(0 0 60px rgba(0, 89, 207, 0.3))',
+                  filter: 'drop-shadow(0 0 30px rgba(209, 188, 0, 0.6)) drop-shadow(0 0 60px rgba(209, 188, 0, 0.4))',
                   transformStyle: 'preserve-3d'
                 }}
               />
@@ -263,12 +263,12 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {[
               {
-                icon: <BrainCircuit size={28} className="text-laser-blue" />,
+                icon: <BrainCircuit size={28} className="text-neon-yellow" />,
                 title: 'AI-Powered Scoring',
                 description: 'Instant asset valuations using advanced ML algorithms'
               },
               {
-                icon: <Link2 size={28} className="text-electric-cyan" />,
+                icon: <Link2 size={28} className="text-neon-yellow" />,
                 title: 'Blockchain Tokenization',
                 description: 'Secure smart contracts for fractional ownership'
               },
@@ -278,7 +278,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
                 description: 'Enable multiple investors to own asset portions'
               },
               {
-                icon: <ShieldCheck size={28} className="text-laser-blue" />,
+                icon: <ShieldCheck size={28} className="text-neon-yellow" />,
                 title: 'Secure & Transparent',
                 description: 'Immutable blockchain records ensure trust'
               }
@@ -318,17 +318,17 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               {
                 title: 'Lower Barriers to Entry',
                 description: 'Fractional ownership allows investors to participate in high-value assets with smaller capital requirements.',
-                icon: <PieChart size={32} className="text-laser-blue" />
+                icon: <PieChart size={32} className="text-neon-yellow" />
               },
               {
                 title: 'Global Accessibility',
                 description: 'Reach investors worldwide without geographical restrictions or traditional banking intermediaries.',
-                icon: <Link2 size={32} className="text-electric-cyan" />
+                icon: <Link2 size={32} className="text-neon-yellow" />
               },
               {
                 title: 'Automated Compliance',
                 description: 'Smart contracts ensure regulatory compliance and automate distribution of dividends and voting rights.',
-                icon: <ShieldCheck size={32} className="text-laser-blue" />
+                icon: <ShieldCheck size={32} className="text-neon-yellow" />
               }
             ].map((benefit, index) => (
               <div 
@@ -364,13 +364,13 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
             {[
               {
                 number: '01',
-                icon: <CloudUpload size={32} className="text-laser-blue" />,
+                icon: <CloudUpload size={32} className="text-neon-yellow" />,
                 title: 'Upload Asset',
                 description: 'Submit documents for analysis'
               },
               {
                 number: '02',
-                icon: <Search size={32} className="text-electric-cyan" />,
+                icon: <Search size={32} className="text-neon-yellow" />,
                 title: 'AI Analysis',
                 description: 'ML model scores your asset'
               },
@@ -382,7 +382,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               },
               {
                 number: '04',
-                icon: <Coins size={32} className="text-laser-blue" />,
+                icon: <Coins size={32} className="text-neon-yellow" />,
                 title: 'Create Tokens',
                 description: 'Mint fractional ownership tokens'
               }
@@ -390,7 +390,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               <div key={index} className="relative">
                 {/* Connecting Line */}
                 {index < 3 && (
-                  <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-laser-blue/50 to-transparent"></div>
+                  <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-neon-yellow/50 to-transparent"></div>
                 )}
                 
                 <div className="glass-card p-4 sm:p-5 text-center hover:bg-white/5 transition-all duration-300">
@@ -423,37 +423,37 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
                 title: 'Real Estate',
                 description: 'Tokenize commercial and residential properties, enabling fractional ownership and easier property trading.',
                 icon: '🏢',
-                color: 'from-laser-blue/20 to-electric-cyan/20'
+                color: 'from-neon-yellow/20 to-neon-yellow/10'
               },
               {
                 title: 'Fine Art & Collectibles',
                 description: 'Make high-value art accessible to more investors while maintaining provenance and authenticity.',
                 icon: '🎨',
-                color: 'from-neon-yellow/20 to-laser-blue/20'
+                color: 'from-neon-yellow/20 to-neon-yellow/10'
               },
               {
                 title: 'Commodities',
                 description: 'Trade gold, silver, and other precious metals with blockchain-verified authenticity and ownership.',
                 icon: '💎',
-                color: 'from-electric-cyan/20 to-laser-blue/20'
+                color: 'from-neon-yellow/20 to-neon-yellow/10'
               },
               {
                 title: 'Intellectual Property',
                 description: 'Monetize patents, copyrights, and trademarks through fractional ownership and revenue sharing.',
                 icon: '📚',
-                color: 'from-laser-blue/20 to-neon-yellow/20'
+                color: 'from-neon-yellow/20 to-neon-yellow/10'
               },
               {
                 title: 'Private Equity',
                 description: 'Democratize access to startup investments and venture capital opportunities.',
                 icon: '🚀',
-                color: 'from-neon-yellow/20 to-electric-cyan/20'
+                color: 'from-neon-yellow/20 to-neon-yellow/10'
               },
               {
                 title: 'Luxury Assets',
                 description: 'Tokenize high-end watches, cars, and other luxury items for shared ownership and investment.',
                 icon: '⌚',
-                color: 'from-electric-cyan/20 to-neon-yellow/20'
+                color: 'from-neon-yellow/20 to-neon-yellow/10'
               }
             ].map((useCase, index) => (
               <div 
@@ -511,12 +511,12 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               {
                 title: 'Smart Contract Audits',
                 description: 'All contracts are thoroughly audited by leading blockchain security firms before deployment.',
-                icon: <ShieldCheck size={28} className="text-laser-blue" />
+                icon: <ShieldCheck size={28} className="text-neon-yellow" />
               },
               {
                 title: 'Multi-Signature Wallets',
                 description: 'Critical operations require multiple approvals, preventing unauthorized access.',
-                icon: <ShieldCheck size={28} className="text-electric-cyan" />
+                icon: <ShieldCheck size={28} className="text-neon-yellow" />
               },
               {
                 title: 'Regulatory Compliance',
@@ -554,30 +554,34 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               {
                 name: 'Mantle Network',
                 description: 'Layer-2 scaling solution',
-                icon: <Link2 size={22} />
+                icon: <Link2 size={22} />,
+                color: 'text-neon-yellow'
               },
               {
                 name: 'AI/ML Scoring',
                 description: 'Advanced valuation algorithms',
-                icon: <BrainCircuit size={22} />
+                icon: <BrainCircuit size={22} />,
+                color: 'text-neon-yellow'
               },
               {
                 name: 'Smart Contracts',
                 description: 'Audited contract templates',
-                icon: <ShieldCheck size={22} />
+                icon: <ShieldCheck size={22} />,
+                color: 'text-neon-yellow'
               },
               {
                 name: 'IPFS Storage',
                 description: 'Decentralized metadata storage',
-                icon: <Zap size={22} />
+                icon: <Zap size={22} />,
+                color: 'text-neon-yellow'
               }
             ].map((tech, index) => (
               <div 
                 key={index}
                 className="glass-card p-4 sm:p-5 hover:bg-white/5 transition-all duration-300 group"
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-laser-blue/20 to-electric-cyan/20 rounded-lg flex items-center justify-center mb-3 text-laser-blue group-hover:scale-110 transition-transform">
-                  {tech.icon}
+                <div className="w-10 h-10 bg-gradient-to-br from-neon-yellow/20 to-neon-yellow/10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform border border-neon-yellow/20">
+                  <div className={tech.color}>{tech.icon}</div>
                 </div>
                 <h3 className="heading-sm mb-1.5">{tech.name}</h3>
                 <p className="body-sm text-white/70">{tech.description}</p>
@@ -688,11 +692,11 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
       {/* CTA Section */}
       <section className="py-16 sm:py-20 lg:py-24 relative">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="glass-card p-6 sm:p-8 lg:p-10 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-laser-blue/10 to-electric-cyan/10"></div>
+          <div className="glass-card p-6 sm:p-8 lg:p-10 relative overflow-hidden border border-neon-yellow/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-yellow/10 to-neon-yellow/5"></div>
             
             <div className="relative z-10">
-              <h2 className="heading-lg mb-3">Ready to Tokenize Your Assets?</h2>
+              <h2 className="heading-lg mb-3 text-white">Ready to Tokenize Your Assets?</h2>
               <p className="body-base text-white/70 mb-6 max-w-xl mx-auto px-2">
                 Join the future of asset ownership. Start tokenizing in minutes.
               </p>
@@ -700,7 +704,7 @@ const LandingPage = ({ onLaunchApp, user, onSignOut }) => {
               <div className="flex justify-center">
                 <button 
                   onClick={onLaunchApp}
-                  className="w-full sm:w-auto px-6 py-2.5 sm:py-3 bg-gradient-to-r from-laser-blue to-electric-cyan rounded-lg text-sm sm:text-base font-semibold hover:opacity-90 transition-opacity flex items-center gap-2 justify-center group"
+                  className="w-full sm:w-auto px-6 py-2.5 sm:py-3 bg-gradient-to-r from-neon-yellow/90 to-neon-yellow rounded-lg text-sm sm:text-base font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-neon-yellow/50 flex items-center gap-2 justify-center group text-deep-space border-2 border-neon-yellow/30"
                 >
                   Get Started Now
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

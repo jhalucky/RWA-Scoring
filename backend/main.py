@@ -22,6 +22,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Add root endpoint for ngrok
+@app.get("/")
+async def root():
+    return {
+        "message": "RWA Scoring Engine API",
+        "status": "running",
+        "endpoints": {
+            "health": "/health",
+            "upload": "/upload",
+            "score": "/score",
+            "tokenize": "/tokenize"
+        }
+    }
+
 
 
 class ScoreRequest(BaseModel):
